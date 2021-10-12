@@ -25,7 +25,7 @@ GPIO.setup(LedGpio, GPIO.OUT)
 GPIO.setup(Sw2Gpio, GPIO.IN)
 GPIO.setup(Led2Gpio, GPIO.OUT)
 
-# API情報
+# API情報 API GatewayのURLとAPI Keyを設定
 API_URL = "https://wwsx8q4mkd.execute-api.ap-northeast-1.amazonaws.com/prod/counter"
 API_KEY = "b8R3f4^Mn37Vez_sAl4xGl4_pEdPcnFr"
 
@@ -49,7 +49,7 @@ while True:
         btnStatus = not(GPIO.input(SwGpio))
         btn2Status = not(GPIO.input(Sw2Gpio))
 
-        # 1つ目のボタンの動作を制御
+        # 1つ目のボタンの動作を制御 今回は青いLEDをLucy用のボタンとします。
         if btnStatus == 0 and lastStatus == 1:
             ledStatus = not ledStatus
             if ledStatus == True:
@@ -63,7 +63,7 @@ while True:
             # 連続でボタンを誤認識しないように少し待つ
             time.sleep(0.2)
 
-        # ２つ目のボタンの動作を制御
+        # ２つ目のボタンの動作を制御 今回は赤いLEDをMike用のボタンとします。
         if btn2Status == 0 and last2Status == 1:
             led2Status = not led2Status
             if led2Status == True:
