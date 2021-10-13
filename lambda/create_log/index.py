@@ -43,33 +43,24 @@ def handler(event, context):
 
     try:
 
-        # Mikeの今日のログを集計
-        res1 = query_today("Mike", today)
-        total_time1 = create_total_time(res1)
-        data1 = str(datetime.timedelta(seconds=total_time1 or 0))
+        # 対象の今日のログを集計、DBへ格納する
+        targets = ["Lucy", "Mike"]
 
-        if data1:
-            response = log_table.put_item(
-                Item={
-                    "username": "Mike",
-                    "date": today,
-                    "totaltime": data1,
-                }
-            )
+        for target in targets:
+            res = query_today(target, today)
+            total_time = create_total_time(res)
+            data = str(datetime.timedelta(seconds=total_time or 0))
 
-        # Lucyの今日のログを集計
-        res2 = query_today("Lucy", today)
-        total_time2 = create_total_time(res2)
-        data2 = str(datetime.timedelta(seconds=total_time2 or 0))
-
-        if data2:
-            response = log_table.put_item(
-                Item={
-                    "username": "Lucy",
-                    "date": today,
-                    "totaltime": data2,
-                }
-            )
+            if data:
+                response = log_table.put_item(
+                    Item={
+                        "username": target,
+                        "date": today,
+                        "totaltime": data,
+                    }
+                )
 
     except Exception as e:
         print(f"Internal Server Error. {str(e)}")
+
+    return "OK"
