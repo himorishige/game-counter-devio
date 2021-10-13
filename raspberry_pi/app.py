@@ -26,8 +26,8 @@ GPIO.setup(Sw2Gpio, GPIO.IN)
 GPIO.setup(Led2Gpio, GPIO.OUT)
 
 # API情報 API GatewayのURLとAPI Keyを設定
-API_URL = "https://wwsx8q4mkd.execute-api.ap-northeast-1.amazonaws.com/prod/counter"
-API_KEY = "b8R3f4^Mn37Vez_sAl4xGl4_pEdPcnFr"
+API_URL = "https://********.execute-api.ap-northeast-1.amazonaws.com/prod/counter"
+API_KEY = "********"
 
 
 def pushCount(name, flag):

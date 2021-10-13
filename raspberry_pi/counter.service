@@ -1,0 +1,13 @@
+[Unit]
+Description=GameCounterService
+After=syslog.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/scripts/game-counter
+ExecStart=/usr/bin/python3 /home/pi/scripts/game-counter/app.py
+TimeoutStopSec=5
+StandardOutput=null
+
+[Install]
+WantedBy = multi-user.targe
