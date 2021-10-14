@@ -190,6 +190,7 @@ class GameCounterStack(Stack):
         bucket = s3.Bucket(
             self, "GameCounterBucket",
             website_index_document="index.html",
+            website_error_document="index.html",
             public_read_access=True,
             removal_policy=RemovalPolicy.DESTROY
         )
