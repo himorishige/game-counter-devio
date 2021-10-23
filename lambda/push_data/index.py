@@ -17,8 +17,10 @@ headers = {
 # SSMパラメーターストアから値を取得
 
 
-def get_parameters(param_key):
-    ssm = boto3.client('ssm')
+def get_parameters(param_key, ssm=None):
+    if not ssm:
+        ssm = boto3.client('ssm')
+
     response = ssm.get_parameter(
         Name=param_key,
         WithDecryption=True
